@@ -1,17 +1,8 @@
 import React from "react";
-import classNames from "classnames";
-import "components/Button.scss";
 import DayListItem from "components/DayListItem";
 
-export default function Button(props) {
-  const { days, day, setDay } = props;
-  let buttonClass = classNames({
-    button: true,
-    "button--confirm": props.confirm,
-    "button--danger": props.danger,
-  });
-
-  const dayListItemParse = days.map((day, index) => {
+export default function DayList(props) {
+  const dayListItemParse = props.days.map((day, index) => {
     return (
       <DayListItem
         key={index}
