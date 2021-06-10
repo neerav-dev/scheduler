@@ -7,19 +7,20 @@ function useVisualMode(initialMode) {
 
   const transition = function (newMode, replace = false) {
     if (replace) {
-      back();
+      const portionHistory = [...history.slice(0, history.length - 1)];
+      const newHistory = [...portionHistory, newMode];
+      setHistory(newHistory);
+    } else {
+      setHistory((prev) => [...prev, newMode]);
     }
     setMode(newMode);
-    setHistory((prev) => [...prev, newMode]);
   };
 
   const back = function () {
     if (history.length > 1) {
-      const newHistory = [...history];
-      newHistory.pop();
+      const newHistory = [...history.slice(0, history.length - 1)];
       setHistory(newHistory);
-      const previousMode = newHistory[newHistory.length - 1];
-      setMode(previousMode);
+      setMode(newHistory[newHistory.length - 1]);
     }
   };
 
