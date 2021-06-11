@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState } from "react";
 
 function useVisualMode(initialMode) {
   const [mode, setMode] = useState(initialMode);
