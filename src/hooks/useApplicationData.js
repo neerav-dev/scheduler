@@ -23,6 +23,35 @@ function useApplicationData() {
     });
   }, []);
 
+  function setSpots(operation) {
+    const daysArr = [...state.days];
+    const currentDay = daysArr.filter((day) => day.name === state.day);
+    const appointment = currentDay[0].appointments.map(
+      (id) => state.appointments[id]
+    );
+    let spots = appointment.filter((t) => t.interview === null).length;
+
+    // increment or decrement spots depending on operation
+    if (operation === "PUT") {
+      spots = spots - 1;
+    } else if (operation === "DELETE") {
+      spots = spots + 1;
+    }
+
+    //update the spots in copy of days array
+    daysArr.forEach((day) => {
+      if (day.id === currentDay[0].id) {
+        day.spots = spots;
+      } else {
+      }
+    });
+
+    setState((prev) => ({
+      ...prev,
+      days: daysArr,
+    }));
+  }
+
   const setDay = (day) => setState({ ...state, day });
 
   function cancelInterview(id) {
@@ -43,6 +72,7 @@ function useApplicationData() {
           ...state,
           appointments,
         });
+        setSpots("DELETE");
       });
   }
 
@@ -64,6 +94,7 @@ function useApplicationData() {
           ...state,
           appointments,
         });
+        setSpots("PUT");
       });
   }
   return { state, setDay, bookInterview, cancelInterview };
