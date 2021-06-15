@@ -65,15 +65,13 @@ function useApplicationData() {
       [id]: appointment,
     };
 
-    return axios
-      .delete(`http://localhost:8001/api/appointments/${id}`)
-      .then((result) => {
-        setState({
-          ...state,
-          appointments,
-        });
-        setSpots("DELETE");
+    return axios.delete(`/api/appointments/${id}`).then((result) => {
+      setState({
+        ...state,
+        appointments,
       });
+      setSpots("DELETE");
+    });
   }
 
   function bookInterview(id, interview) {
@@ -88,7 +86,7 @@ function useApplicationData() {
     };
 
     return axios
-      .put(`http://localhost:8001/api/appointments/${id}`, { interview })
+      .put(`/api/appointments/${id}`, { interview })
       .then((result) => {
         setState({
           ...state,
