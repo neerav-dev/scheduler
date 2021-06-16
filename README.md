@@ -6,7 +6,7 @@ React application that allows users to book and cancel interviews. We combine a 
 
 Please visit [Scheduler App](https://scheduler-app-lhl.netlify.app/).
 
-##### (backend is hosted on heroku that fall asleep so might have to wait 30secs. until it wakes up)
+ ##### *(backend is hosted on heroku that fall asleep so might have to wait 30secs. until it wakes up)*
 
 ## Screenshots
 
@@ -62,5 +62,3 @@ npm test
 ```sh
 npm run storybook
 ```
-
-https://scheduler-app-lhl.netlify.app/
