@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-function useApplicationData() {
+const useApplicationData = function () {
   const [state, setState] = useState({
     day: "Monday",
     days: [],
@@ -46,6 +46,7 @@ function useApplicationData() {
       }
     });
 
+    //set state with new day array
     setState((prev) => ({
       ...prev,
       days: daysArr,
@@ -54,7 +55,7 @@ function useApplicationData() {
 
   const setDay = (day) => setState({ ...state, day });
 
-  function cancelInterview(id) {
+  const cancelInterview = function (id) {
     const appointment = {
       ...state.appointments[id],
       interview: null,
@@ -72,9 +73,9 @@ function useApplicationData() {
       });
       setSpots("DELETE");
     });
-  }
+  };
 
-  function bookInterview(id, interview) {
+  const bookInterview = function (id, interview) {
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview },
@@ -85,16 +86,14 @@ function useApplicationData() {
       [id]: appointment,
     };
 
-    return axios
-      .put(`/api/appointments/${id}`, { interview })
-      .then(() => {
-        setState({
-          ...state,
-          appointments,
-        });
-        setSpots("PUT");
+    return axios.put(`/api/appointments/${id}`, { interview }).then(() => {
+      setState({
+        ...state,
+        appointments,
       });
-  }
+      setSpots("PUT");
+    });
+  };
   return { state, setDay, bookInterview, cancelInterview };
-}
+};
 export default useApplicationData;

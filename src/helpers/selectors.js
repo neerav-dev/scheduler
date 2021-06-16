@@ -1,5 +1,6 @@
 export function selectUserByName(state, name) {
   const filteredNames = state.users.filter((user) => user.name === name);
+
   return filteredNames;
 }
 
@@ -45,9 +46,11 @@ export function getInterview(state, interview) {
   if (interview === null) {
     return null;
   }
+
   const transformInterview = {
     ...interview,
     interviewer: state.interviewers[interview.interviewer],
   };
+
   return transformInterview;
 }
