@@ -10,7 +10,11 @@ Please visit [Scheduler App](https://scheduler-app-lhl.netlify.app/).
 
 ## Screenshots
 
-!["Screenshot <name>"]('#')
+!["Screenshot Main Page"]('https://github.com/neerav-dev/scheduler/blob/18e42eba7c32c43ac1bcc7933cb532e62cebe5e3/docs/main-page.png')
+!["Screenshot Book New Appointment"]('https://github.com/neerav-dev/scheduler/blob/18e42eba7c32c43ac1bcc7933cb532e62cebe5e3/docs/appointment-form.png')
+!["Screenshot Preview Book Appointment"]('https://github.com/neerav-dev/scheduler/blob/18e42eba7c32c43ac1bcc7933cb532e62cebe5e3/docs/booked-preview.png')
+!["Screenshot Edit Existing Appointment"]('https://github.com/neerav-dev/scheduler/blob/18e42eba7c32c43ac1bcc7933cb532e62cebe5e3/docs/edit-form.png')
+!["Screenshot Delete Appointment Confirmation"]('https://github.com/neerav-dev/scheduler/blob/18e42eba7c32c43ac1bcc7933cb532e62cebe5e3/docs/delete-confirmation.png')
 
 ## Technical Specifications
 
