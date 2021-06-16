@@ -19,8 +19,33 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
       - run: npm test
 
+  deploy:
+    machine:
+      enabled: true
+
+    working_directory: ~/client
+
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "f6:b8:b5:17:84:bb:2f:b4:a4:84:16:7d:c8:12:6b:59"
+      - checkout
+      - run:
+          name: Push Master to Production
+          command: |
+            git push git@github.com:neerav-dev/scheduler.git master:production
+
 workflows:
   version: 2
-  test:
+  test_and_deploy:
     jobs:
-      - build
+      - build:
+          filters:
+            branches:
+              ignore: production
+      - deploy:
+          filters:
+            branches:
+              ignore: production
+          requires:
+            - build
