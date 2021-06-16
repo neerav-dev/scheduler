@@ -4,7 +4,7 @@ export function selectUserByName(state, name) {
 }
 
 export function getInterviewersForDay(state, day) {
-  if (state.length === 0) {
+  if (!state) {
     return [];
   } else {
     const filteredAppointment = state.days.filter(
@@ -15,23 +15,8 @@ export function getInterviewersForDay(state, day) {
       return [];
     }
 
-    const appointmentIds = filteredAppointment[0].appointments;
-    const appointments = appointmentIds.map((id) => state.appointments[id]);
-
-    const interviewerIds = [
-      ...new Set(
-        appointments
-          .map(
-            (appointment) =>
-              appointment.interview && appointment.interview.interviewer
-          )
-          .filter((interviewerId) => interviewerId != null)
-      ),
-    ];
-
-    const interviewers = interviewerIds.map(
-      (interviewerId) => state.interviewers[interviewerId]
-    );
+    const interviewerIds = filteredAppointment[0].interviewers;
+    const interviewers = interviewerIds.map((id) => state.interviewers[id]);
 
     return interviewers;
   }
