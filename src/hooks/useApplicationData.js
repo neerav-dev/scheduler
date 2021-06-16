@@ -65,7 +65,7 @@ function useApplicationData() {
       [id]: appointment,
     };
 
-    return axios.delete(`/api/appointments/${id}`).then((result) => {
+    return axios.delete(`/api/appointments/${id}`).then(() => {
       setState({
         ...state,
         appointments,
@@ -87,7 +87,7 @@ function useApplicationData() {
 
     return axios
       .put(`/api/appointments/${id}`, { interview })
-      .then((result) => {
+      .then(() => {
         setState({
           ...state,
           appointments,
