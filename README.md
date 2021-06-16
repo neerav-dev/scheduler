@@ -16,7 +16,7 @@ Please visit [Scheduler App](https://scheduler-app-lhl.netlify.app/).
 
 **Book New Appointment**
 
-!["Screenshot Book New Appointment"](https://github.com/neerav-dev/scheduler/blob/18e42eba7c32c43ac1bcc7933cb532e62cebe5e3/docs/appointment-form.png)
+!["Screenshot Book New Appointment"](https://github.com/neerav-dev/scheduler/blob/3bd2c01cd8a818c8533eb0e65204b6de7c33390e/docs/appointment-form.png)
 
 **Preview Book Appointment**
 
