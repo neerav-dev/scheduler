@@ -24,6 +24,11 @@ export default function Form(props) {
       return;
     }
 
+    if (!interviewer) {
+      setError("No interviewer is selected");
+      return;
+    }
+
     setError("");
     props.onSave(name, interviewer);
   }
