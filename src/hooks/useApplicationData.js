@@ -23,34 +23,22 @@ const useApplicationData = function () {
     });
   }, []);
 
-  function setSpots(operation) {
-    const daysArr = [...state.days];
-    const currentDay = daysArr.filter((day) => day.name === state.day);
-    const appointment = currentDay[0].appointments.map(
-      (id) => state.appointments[id]
-    );
-    let spots = appointment.filter((t) => t.interview === null).length;
+  function setSpots(day, days, appointments) {
+    const currentDayIndex = days.findIndex((dayName) => dayName.name === day);
+    const currentDay = days[currentDayIndex];
+    const appointmentIds = currentDay.appointments;
 
-    // increment or decrement spots depending on operation
-    if (operation === "PUT") {
-      spots = spots - 1;
-    } else if (operation === "DELETE") {
-      spots = spots + 1;
+    let spots = 0;
+
+    for (const id of appointmentIds) {
+      let appointment = appointments[id];
+      !appointment.interview && spots++;
     }
 
-    //update the spots in copy of days array
-    daysArr.forEach((day) => {
-      if (day.id === currentDay[0].id) {
-        day.spots = spots;
-      } else {
-      }
-    });
-
-    //set state with new day array
-    setState((prev) => ({
-      ...prev,
-      days: daysArr,
-    }));
+    const newDay = { ...currentDay, spots };
+    let newDays = [...days];
+    newDays[currentDayIndex] = newDay;
+    return newDays;
   }
 
   const setDay = (day) => setState({ ...state, day });
@@ -67,11 +55,12 @@ const useApplicationData = function () {
     };
 
     return axios.delete(`/api/appointments/${id}`).then(() => {
+      let newDays = setSpots(state.day, state.days, appointments);
       setState({
         ...state,
         appointments,
+        days: newDays,
       });
-      setSpots("DELETE");
     });
   };
 
@@ -87,11 +76,12 @@ const useApplicationData = function () {
     };
 
     return axios.put(`/api/appointments/${id}`, { interview }).then(() => {
+      let newDays = setSpots(state.day, state.days, appointments);
       setState({
         ...state,
         appointments,
+        days: newDays,
       });
-      setSpots("PUT");
     });
   };
   return { state, setDay, bookInterview, cancelInterview };

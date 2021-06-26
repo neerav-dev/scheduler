@@ -6,13 +6,7 @@ const useVisualMode = function (initialMode) {
   const [history, setHistory] = useState([initialMode]);
 
   const transition = function (newMode, replace = false) {
-    if (replace) {
-      const portionHistory = [...history.slice(0, history.length - 1)];
-      const newHistory = [...portionHistory, newMode];
-      setHistory(newHistory);
-    } else {
-      setHistory((prev) => [...prev, newMode]);
-    }
+    !replace && setHistory((prev) => [...prev, newMode]);
 
     setMode(newMode);
   };
